@@ -1,0 +1,212 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>e-BusPass Portal</title>
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        background-color: #d9eeef;
+  /*       background-color: #eaf7f8; */
+        color: #333;
+      }
+  
+      /* Header */
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: white;
+        padding: 10px 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+  
+      .hamburger {
+        font-size: 24px;
+        cursor: pointer;
+        color: #f95d5d;
+      }
+  
+      .page-title {
+        color: teal;
+        font-weight: bold;
+        font-size: 20px;
+        text-align: center;
+        flex-grow: 1;
+        margin-left: -24px;
+      }
+  
+      /* Main Title */
+      .main-title {
+        text-align: center;
+        color: teal;
+        font-weight: bold;
+        text-decoration: underline;
+        margin: 20px 0 10px;
+        font-size: 22px;
+      }
+  
+      /* Form Container */
+      .form-container {
+        background-color: #d9eeef;
+  /*       background-color: #eaf7f8; */
+  /*       background-color: #d3f1f6; */
+        margin: 20px auto;
+        margin-bottom: 15px;
+        padding: 20px;
+        border-radius: 10px;
+        width: 80%;
+        max-width: 500px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      }
+  
+      label {
+        display: block;
+        margin-bottom: 25px;
+        font-weight: bold;
+      }
+  
+      .required {
+        color: red;
+      }
+  
+      input[type="text"],
+      input[type="tel"] {
+        width: 90%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 16px;
+      }
+  
+      
+      .captcha-section {
+        margin-bottom: 15px;
+      }
+  
+      .captcha-image {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 10px 0;
+      }
+  
+      .captcha-image img {
+        height: 40px;
+      }
+    
+  
+      .submit-btn {
+        background-color: #e76c6c;
+        width: 50%;
+        margin: 20px 100px;
+        color: white;
+        border: none;
+        padding: 15px 40px;
+        font-size: 16px;
+        text-align: center;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+  /*     .submit-btn {
+        selector {
+    background-image: url("your-image.jpg");
+    background-position: x y;
+  }
+  
+        width: 90%;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding: 12px;
+        background-color: #f95d5d;
+        color: white;
+        background-align: center;
+        font-size: 16px;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+      } */
+  
+      .submit-btn:hover {
+        background-color: #e84e4e;
+      }
+      
+     /* Footer */
+       footer {
+        background-color: #007c80;
+        color: white;
+        text-align: center;
+        padding: 70px 1px;
+        font-size: 13px;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+  /*       margin-top: 96px; */
+      }
+  
+      @media (max-width: 500px) {
+        .form-container {
+          padding: 15px;
+        }
+  
+  /*       .main-title {
+          font-size: 18px;
+        } */
+  
+        .page-title {
+          font-size: 18px;
+        }
+      }
+    </style>
+  </head>
+  <body class="vsc-initialized" cz-shortcut-listen="true">
+  
+    <header>
+      <div class="hamburger">☰</div>
+      <div class="page-title">Home</div>
+      <div style="width: 24px;"></div>
+    </header>
+  
+    <div class="main-title">Get Your e-BusPass</div>
+  
+    <div class="form-container">
+      <form id="busPassForm">
+        <label for="buspass-number">e-BusPass Number <span class="required">*</span></label>
+        <input type="text" id="buspass-number" value="7502012543261" readonly="">
+  
+        <label for="mobile-number">Enter Mobile Number <span class="required">*</span></label>
+        <input type="tel" id="mobile-number" placeholder="Enter Mobile Number" required="">
+  
+        <div class="captcha-section">
+           <label><strong>Captcha</strong></label>   <img src="captchaServlet.png" alt="Refresh Icon" style="height: 50px; cursor: pointer;">
+         
+  <!--          <div class="captcha-image"> -->
+  <!--           <input type="text" id="buspass-number" value="7oqGFw" readonly /> -->
+  <!--           <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAAAUCAYAAABCErmFAAAAAXNSR0IArs4c6QAAAIRlWElmTU0AKgAAAAgABwESAAMAAAABAAEAAAEaAAUAAAABAAAAVAcEbQAAAANQTFRFAAAAzs7O////29vbF+YvLQAAAAF0Uk5TAEDm2GYAAABtSURBVHja7dPBDoAwCEBRY/7/PxtDQciJBbm40kBXnzHkMVEWhLPyWIJESAhIBkgQkQkQKkA5QBDpAVxBUpQ5wLEKXz1DwMYYBMYOERixgEEOFQIpT4cAIwR5j6x2dgw9QyMogJAMSCkZArRt4dmgAAAABJRU5ErkJggg==" alt="Captcha" /> -->
+             <img src="refresh.png" alt="Refresh Icon" style="height: 40px; cursor: pointer;"> 
+           </div>  
+          <label for="captcha-input">Type the captcha Here</label>
+          <input type="text" id="captcha-input" placeholder="" required="">
+   
+    </form></div>
+        <button type="submit" class="submit-btn">SUBMIT</button>
+      
+     
+    <footer>
+      Copyright © - Delhi e-Governance Society 2025
+    </footer>
+  
+    <script>
+      document.getElementById('busPassForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const busPassNumber = document.getElementById('buspass-number').value;
+        window.location.href = `https://dtcbuspass-delhi-gov-in-view-epassno.github.io/7502012543261/`;
+      });
+    </script>
+  
+  
+  
+  </body></html>
